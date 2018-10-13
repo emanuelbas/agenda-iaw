@@ -1,0 +1,34 @@
+<div class="mt-5" align='center' style='margin-top:5em; margin-left:20%; margin-right:20%'>
+
+
+<h5> Registrate como productora </h5><br>
+<button type="submit" class="btn btn-primary">Registrate</button>
+<br><br>
+<hr>
+<br>
+<form [formGroup]="form">
+  <h5> Registrate como usuario </h5><br>
+  <div class="form-group">
+    <input type="text" class="form-control" id="username" placeholder="Nombre de usuario" formControlName="username">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" id="name" placeholder="Nombre/s" formControlName="name">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" id="subname" placeholder="Apellido/s" formControlName="subname">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email" >
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" id="password" placeholder="Contraseña" formControlName="password">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" id="confirmpassword" placeholder="Repite contraseña" formControlName="passwordconfirm">
+  </div>
+    <button type="submit" class="btn btn-primary">Registrate</button>
+</form>
+</div>
+<br><br>
+
+<!-- {{form.value | json}} -->
