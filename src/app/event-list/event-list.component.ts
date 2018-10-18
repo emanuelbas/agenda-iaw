@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Evento } from '../_model/Evento'
+import { Evento } from '../_model/Evento';
+import { ApiService } from '../_services/api.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+import { MockEventsService } from '../_services/events/mock-events.service';
+
 
 @Component({
   selector: 'app-event-list',
@@ -8,21 +14,18 @@ import { Evento } from '../_model/Evento'
 })
 export class EventListComponent implements OnInit {
 
-  eventos : Evento[];
-  constructor() {
-  	this.eventos = [
-  		new Evento(
-  			'Evento 1', new(Date), 'cine','https://picsum.photos/800/600/?random',
-	 'una coordenada', 'un lugar', ['#hashtag1', '#hashtag2'] , 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'), 
-  		new Evento(
-  			'Evento 2', new(Date), 'cine','https://picsum.photos/800/600/?random',
-	 'una coordenada', 'un lugar', ['#hashtag1','#hashtag2'], 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'),
-  		new Evento(
-  			'Evento 3', new(Date), 'cine','https://picsum.photos/800/600/?random',
-	 'una coordenada', 'un lugar', ['#hashtag1','#hashtag2'], 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged'),
-  	
-  	]
-   }
+  events : Evento[];
+  static instance: EventListComponent;
+
+  constructor(private service: ApiService, private router: Router) { /*private service: HttpItemService*/
+
+    this.updateLocalEvents();
+  }
+
+  updateLocalEvents(){
+    console.log("Updating events");
+    this.service.getEvents().then(events => this.events = events);
+  }
 
   ngOnInit() {
   }
